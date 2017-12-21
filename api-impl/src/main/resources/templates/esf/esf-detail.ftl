@@ -222,12 +222,13 @@
                             </#if>
                         </div>
                         <div class="tilelist-content">
-                            <#if plotInfo['desc']?exists>
-                                <h4 class="cont-first">${plotInfo.desc}</h4>
-                            </#if>
+                            <h4 class="cont-first">
+                            <#if plotInfo['desc']?exists>${plotInfo.desc}<#else>暂无</#if>
+                            </h4>
+                          <p class="cont-last"><em>
                             <#if plotInfo['avgPrice']?exists>
-                                <p class="cont-last"><em>${plotInfo.avgPrice}元</em>/㎡</p>
-                            </#if>
+                               ${plotInfo.avgPrice}元
+                            </#if></em>/㎡</p>
                         </div>
                     </a></li>
                 </#list>

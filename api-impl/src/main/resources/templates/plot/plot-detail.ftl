@@ -67,7 +67,7 @@
     <section class="plot-primary-header">
         <div class="plot-primary-text">
             <h2>${village['rc']}</h2>
-            <p>[顺义-商圈] 中央别墅区 顺语路57号</p>
+            <p><#if village['address']?exists>${village['address']}<#else>暂无</#if></p>
             <#if village['metroWithPlotsDistance']?exists>
             <p><#assign userMap = village['metroWithPlotsDistance']/>
             <#assign  keys=userMap?keys/>
