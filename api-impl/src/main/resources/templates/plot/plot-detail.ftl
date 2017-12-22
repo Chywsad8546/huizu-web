@@ -173,7 +173,7 @@
                     <p class="green">↓ 3.46%</p>
                 </div>
             </div>
-            <div></div>
+            <div id="main"></div>
         </div>
         <div class="basic-information supply-contrast none">
             <div class="column item-column-two">
@@ -420,7 +420,6 @@
                     <#if photos[0]?exists>
                         <img src="${staticurl}/${photos[0]}" alt="${nearviitem['rc']}">
                     </#if>
-
                 </div>
                 <div class="tilelist-content">
                     <p class="cont-first">${nearviitem['rc']}</p>
@@ -465,5 +464,142 @@
 <script src="${staticurl}/js/swiper-3.4.2.min.js"></script>
 <script src="${staticurl}/js/main.js"></script>
 <script src="${staticurl}/js/plot-detail-map-message.js"></script>
+<#--<script type="text/javascript">
+
+    var myChartline = echarts.init(document.getElementById('main'));
+    option = {
+        title: {
+            text: '价格趋势表',
+            subtext: '',
+            textStyle:{
+                fontSize:30,
+            },
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['楼盘价格','区域价格','商圈价格']
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                dataZoom: {
+                    yAxisIndex: 'none'
+                },
+                dataView: {readOnly: false},
+                magicType: {type: ['line', 'bar']},
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        xAxis:  {
+            type: 'category',
+            boundaryGap: false,
+            data: [&lt;#&ndash;<#list xlist as item >'${item}',</#list>&ndash;&gt;],
+        },
+        yAxis: {
+            type: 'value',
+            axisLabel: {
+                formatter: '{value}'
+            }
+        },
+        series: [
+        <#if (ptCD0?size<12)>
+            {
+                name:'楼盘价格',
+                type:'scatter',
+                data:[[10,19]],
+                markPoint: {
+                    data: [
+                        {type: 'max', name: '最大值'},
+                        {type: 'min', name: '最小值'}
+                    ]
+                }
+            },
+        <#else> {
+            name:'楼盘价格',
+            type:'line',
+            data:[&lt;#&ndash;<#list ptCD0 as item >${item['price']},</#list>&ndash;&gt;],
+            markPoint: {
+                data: [
+                    {type: 'max', name: '最大值'},
+                    {type: 'min', name: '最小值'}
+                ]
+            },
+            markLine: {
+                data: [
+                    {type: 'average', name: '平均值'}
+                ]
+            }
+        },
+        </#if>
+            {
+                name:'区域价格',
+                type:'line',
+                data:[&lt;#&ndash;<#list ptCD1 as item >${item['price']},</#list>&ndash;&gt;],
+                markPoint: {
+                    data: [
+                        {name: '周最低', value: -2, xAxis: 1, yAxis: -1.5}
+                    ]
+                },
+                markLine: {
+                    data: [
+                        {type: 'average', name: '平均值'},
+                        [{
+                            symbol: 'none',
+                            x: '90%',
+                            yAxis: 'max'
+                        }, {
+                            symbol: 'circle',
+                            label: {
+                                normal: {
+                                    position: 'start',
+                                    formatter: '最大值'
+                                }
+                            },
+                            type: 'max',
+                            name: '最高点'
+                        }]
+                    ]
+                }
+            },
+            {
+                name:'商圈价格',
+                type:'line',
+                data:[&lt;#&ndash;<#list ptCD2 as item >${item['price']},</#list>&ndash;&gt;],
+                markPoint: {
+                    data: [
+                        {name: '周最低', value: -2, xAxis: 1, yAxis: -1.5}
+                    ]
+                },
+                markLine: {
+                    data: [
+                        {type: 'average', name: '平均值'},
+                        [{
+                            symbol: 'none',
+                            x: '90%',
+                            yAxis: 'max'
+                        }, {
+                            symbol: 'circle',
+                            label: {
+                                normal: {
+                                    position: 'start',
+                                    formatter: '最大值'
+                                }
+                            },
+                            type: 'max',
+                            name: '最高点'
+                        }]
+                    ]
+                }
+            }
+        ]
+    };
+
+    myChartline.setOption(option);
+
+
+</script>-->
 </body>
 </html>

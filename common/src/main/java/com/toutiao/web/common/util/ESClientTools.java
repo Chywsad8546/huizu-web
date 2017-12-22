@@ -36,16 +36,16 @@ public class ESClientTools {
             if (client == null){
                 try {
                     String[] addresses = esServerIps.split(",");
-                    for (String address : addresses) {
-                        String[] hostAndPort = address.split(":");
-                        client = new PreBuiltTransportClient(settings).addTransportAddress(new InetSocketTransportAddress(
-                                InetAddress.getByName(hostAndPort[0]), Integer.valueOf(hostAndPort[1])));
-                    }
-                } catch (UnknownHostException e) {
-                    if (client != null) {
-                        client.close();
-                    }
+                for (String address : addresses) {
+                    String[] hostAndPort = address.split(":");
+                    client = new PreBuiltTransportClient(settings).addTransportAddress(new InetSocketTransportAddress(
+                            InetAddress.getByName(hostAndPort[0]), Integer.valueOf(hostAndPort[1])));
                 }
+            } catch (UnknownHostException e) {
+                if (client != null) {
+                    client.close();
+                }
+            }
             }
         }
         return client;

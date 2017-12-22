@@ -56,7 +56,6 @@ public class NewHouseServiceImpl implements NewHouseService{
     public Map<String,Object> getNewHouse(NewHouseQuery newHouseQuery) {
 
         //建立连接
-
         TransportClient client = esClientTools.init();
         //
         SearchResponse searchresponse = new SearchResponse();
